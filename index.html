@@ -512,12 +512,24 @@
                             </div>
                         </div>
                         
-                        {/* Desktop Controls (Hidden on Mobile) */}
-                        <div className="hidden md:flex items-center bg-white border border-slate-200 rounded-xl px-2 py-1 shadow-sm">
-                             <button onClick={() => setViewDate(new Date(viewDate.setDate(viewDate.getDate() - 7)))} className="p-1 hover:bg-slate-100 rounded-lg"><ChevronLeft className="w-4 h-4 text-slate-500" /></button>
-                             <div className="mx-2 flex flex-col items-center w-24"><span className="text-xs font-bold text-slate-700">{viewDate.getFullYear()}-{viewDate.getMonth() + 1}-{viewDate.getDate()}</span></div>
-                             <button onClick={() => setViewDate(new Date(viewDate.setDate(viewDate.getDate() + 7)))} className="p-1 hover:bg-slate-100 rounded-lg"><ChevronRight className="w-4 h-4 text-slate-500" /></button>
-                             <div className="border-l border-slate-200 pl-2 ml-2"><button onClick={() => setViewDate(new Date())} className="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded hover:bg-indigo-100">本週</button></div>
+                        {/* Desktop Controls (Hidden on Mobile, Restored View Switcher) */}
+                        <div className="hidden md:flex items-center gap-3">
+                             {/* View Switcher for Desktop */}
+                             <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200">
+                                <button onClick={() => setCurrentView('dashboard')} className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${currentView === 'dashboard' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}><LayoutGrid className="w-3.5 h-3.5" /> 看板</button>
+                                <button onClick={() => setCurrentView('week')} className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${currentView === 'week' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}><CalendarCheck className="w-3.5 h-3.5" /> 週清單</button>
+                                <button onClick={() => setCurrentView('day')} className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${currentView === 'day' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}><List className="w-3.5 h-3.5" /> 日曆</button>
+                                <button onClick={() => setCurrentView('month')} className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${currentView === 'month' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}><CalendarDays className="w-3.5 h-3.5" /> 月曆</button>
+                                <button onClick={() => setCurrentView('info')} className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${currentView === 'info' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}><Info className="w-3.5 h-3.5" /> 資訊</button>
+                             </div>
+
+                             {/* Date Controls */}
+                             <div className="flex items-center bg-white border border-slate-200 rounded-xl px-2 py-1 shadow-sm">
+                                <button onClick={() => setViewDate(new Date(viewDate.setDate(viewDate.getDate() - 7)))} className="p-1 hover:bg-slate-100 rounded-lg"><ChevronLeft className="w-4 h-4 text-slate-500" /></button>
+                                <div className="mx-2 flex flex-col items-center w-24"><span className="text-xs font-bold text-slate-700">{viewDate.getFullYear()}-{viewDate.getMonth() + 1}-{viewDate.getDate()}</span></div>
+                                <button onClick={() => setViewDate(new Date(viewDate.setDate(viewDate.getDate() + 7)))} className="p-1 hover:bg-slate-100 rounded-lg"><ChevronRight className="w-4 h-4 text-slate-500" /></button>
+                                <div className="border-l border-slate-200 pl-2 ml-2"><button onClick={() => setViewDate(new Date())} className="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded hover:bg-indigo-100">本週</button></div>
+                             </div>
                         </div>
                     </header>
 
@@ -538,15 +550,6 @@
                          <button onClick={() => setCurrentView('info')} className={`flex flex-col items-center p-2 rounded-xl transition-all ${currentView === 'info' ? 'text-indigo-600 bg-indigo-50' : 'text-slate-400'}`}><Info className="w-5 h-5 mb-0.5" /><span className="text-[10px] font-bold">資訊</span></button>
                     </div>
 
-                    {/* Desktop Navigation (Hidden on Mobile) */}
-                    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur border border-slate-200 shadow-xl rounded-full p-1.5 z-40 hidden md:flex gap-2">
-                        <button onClick={() => setCurrentView('dashboard')} className={`px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 transition-all ${currentView === 'dashboard' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:bg-slate-100'}`}><LayoutGrid className="w-4 h-4" /> 看板</button>
-                        <button onClick={() => setCurrentView('week')} className={`px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 transition-all ${currentView === 'week' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:bg-slate-100'}`}><CalendarCheck className="w-4 h-4" /> 週清單</button>
-                        <button onClick={() => setCurrentView('day')} className={`px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 transition-all ${currentView === 'day' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:bg-slate-100'}`}><List className="w-4 h-4" /> 日曆</button>
-                        <button onClick={() => setCurrentView('month')} className={`px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 transition-all ${currentView === 'month' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:bg-slate-100'}`}><CalendarDays className="w-4 h-4" /> 月曆</button>
-                        <button onClick={() => setCurrentView('info')} className={`px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 transition-all ${currentView === 'info' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:bg-slate-100'}`}><Info className="w-4 h-4" /> 資訊</button>
-                    </div>
-                    
                     {/* Modals */}
                     {isManageModalOpen && (
                         <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-slate-900/50 backdrop-blur-sm p-0 md:p-4">
