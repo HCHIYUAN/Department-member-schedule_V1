@@ -7,6 +7,9 @@
     
     <title>部門動態管理</title>
     
+    <!-- 1. 連結 Manifest (Android/Chrome 需要這個) -->
+    <link rel="manifest" href="manifest.json">
+
     <!-- PWA / Mobile Web App 設定 -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,9 +17,11 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#4f46e5">
 
-    <!-- 這裡使用 Data URI 生成一個簡單的 App Icon -->
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3652/3652191.png">
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3652/3652191.png">
+    <!-- 2. iOS 專用 Icon (iPhone 必須要有這行，否則 icon.png 不會顯示) -->
+    <link rel="apple-touch-icon" href="icon.png">
+    
+    <!-- 3. 一般瀏覽器 Icon -->
+    <link rel="icon" type="image/png" href="icon.png">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
